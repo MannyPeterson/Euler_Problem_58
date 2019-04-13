@@ -24,25 +24,20 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		int current = 0, prior = 1, cycle = 0;
+		int next = 0, current = 1, cycle = 0;
 		double ratio = 0, primes = 0, numbers = 0;
 
-		for (int i = 0; i < 54000; i++) {
-			if (Main.isPrime(prior)) {
-				primes++;
-			}
+		for (int i = 0; i < 60000; i++) {
+			if (Main.isPrime(current)) primes++;
 			numbers++;
 			ratio = primes / numbers;
-			System.out.format("%4f %4f %4f\n", primes, numbers, ratio);
-			if (ratio < 0.1) {
-				break;
-			}
-			if (i % 4 == 0) {
-				cycle++;
-			}
-			current = prior + (cycle * 2);
-			prior = current;
+			if (ratio > 0.0 & ratio < 0.1) break;
+			if (i % 4 == 0) cycle++;
+			next = current + (cycle * 2);
+			current = next;
 		}
+		
+		System.out.format("%4f %4f %4f\n",primes, numbers, ratio);
 	}
 
 }
