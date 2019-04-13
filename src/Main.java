@@ -25,11 +25,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		int[][] diagQuads;
-		int i, j;
+		int[] diagnols;
+		int i, j, k;
 
 		/*
 		 * PHASE 1: BUILD DIAGNALS FOR THE FOUR QUADRANTS OF THE BOX / SQUARE
 		 */
+/*
 		diagQuads = new int[4][100];
 		diagQuads[0][0] = 3;
 		diagQuads[1][0] = 5;
@@ -46,10 +48,32 @@ public class Main {
 			diagQuads[3][j] = diagQuads[3][j - 1] + i;
 			i += 2;
 		}
+*/
+	
+		diagnols = new int[20];
+		diagnols[0] = 1;
+		i = 2;
+		k = 0;
+		for (j = 1; j < diagnols.length; j++) {
+			diagnols[j] = diagnols[j - 1] + i;
+			k += 1;
+			if(k > 3) {
+				i += 2;
+				k = 0;
+			}
+		}
 
+		for (i = 1; i < diagnols.length;i++) {
+			System.out.format("%6d\n",diagnols[i]);
+		}
+
+/*
 		for (i = 0; i < diagQuads[0].length; i++) {
 			System.out.format("%4d   %4d   %4d   %4d\n", diagQuads[0][i], diagQuads[1][i], diagQuads[2][i],
 					diagQuads[3][i]);
 		}
+*/
 	}
+		
+		
 }
