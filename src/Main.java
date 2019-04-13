@@ -15,7 +15,7 @@ public class Main {
 		if (n > 2 && (n & 1) == 0) {
 			return false;
 		}
-		for (int i = 3; i < Math.sqrt(n); i += 2) {
+		for (int i = 3; i <= Math.sqrt(n); i += 2) {
 			if (n % i == 0) {
 				return false;
 			}
@@ -24,56 +24,25 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		int[][] diagQuads;
-		int[] diagnols;
-		int i, j, k;
+		int current = 0, prior = 1, cycle = 0;
+		double ratio = 0, primes = 0, numbers = 0;
 
-		/*
-		 * PHASE 1: BUILD DIAGNALS FOR THE FOUR QUADRANTS OF THE BOX / SQUARE
-		 */
-/*
-		diagQuads = new int[4][100];
-		diagQuads[0][0] = 3;
-		diagQuads[1][0] = 5;
-		diagQuads[2][0] = 7;
-		diagQuads[3][0] = 9;
-		i = 10;
-		for (j = 1; j < diagQuads[0].length; j++) {
-			diagQuads[0][j] = diagQuads[0][j - 1] + i;
-			i += 2;
-			diagQuads[1][j] = diagQuads[1][j - 1] + i;
-			i += 2;
-			diagQuads[2][j] = diagQuads[2][j - 1] + i;
-			i += 2;
-			diagQuads[3][j] = diagQuads[3][j - 1] + i;
-			i += 2;
-		}
-*/
-	
-		diagnols = new int[20];
-		diagnols[0] = 1;
-		i = 2;
-		k = 0;
-		for (j = 1; j < diagnols.length; j++) {
-			diagnols[j] = diagnols[j - 1] + i;
-			k += 1;
-			if(k > 3) {
-				i += 2;
-				k = 0;
+		for (int i = 0; i < 54000; i++) {
+			if (Main.isPrime(prior)) {
+				primes++;
 			}
+			numbers++;
+			ratio = primes / numbers;
+			System.out.format("%4f %4f %4f\n", primes, numbers, ratio);
+			if (ratio < 0.1) {
+				break;
+			}
+			if (i % 4 == 0) {
+				cycle++;
+			}
+			current = prior + (cycle * 2);
+			prior = current;
 		}
-
-		for (i = 1; i < diagnols.length;i++) {
-			System.out.format("%6d\n",diagnols[i]);
-		}
-
-/*
-		for (i = 0; i < diagQuads[0].length; i++) {
-			System.out.format("%4d   %4d   %4d   %4d\n", diagQuads[0][i], diagQuads[1][i], diagQuads[2][i],
-					diagQuads[3][i]);
-		}
-*/
 	}
-		
-		
+
 }
