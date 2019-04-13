@@ -1,5 +1,5 @@
 /*
- * Manny Peterson's Solution to Euler Project Problem #58
+ * Manny Peterson's Solution to Project Euler Problem #58
  * https://projecteuler.net/problem=58
  * 
  * Enjoy! :)
